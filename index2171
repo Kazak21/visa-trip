@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visa Trip — визовая поддержка и туры</title>
+  <meta name="description" content="Оформление виз: США, Шенген, Великобритания, Азия. Консультации, помощь с документами, туры с визовой поддержкой." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #0f2b5b; /* темно-синий */
+      --ink-soft: #324f86; 
+      --brand: #1f6fff; /* акцент синий */
+      --accent: #ff9b21; /* акцент оранжевый из логотипа */
+      --muted: #f5f7fb; /* светло-голубой фон секций */
+      --card: #ffffff;
+      --shadow: 0 6px 30px rgba(15,43,91,.08);
+      --radius: 18px;
+      --radius-lg: 26px;
+      --container: 1160px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--container);margin-inline:auto;padding:0 16px}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e9eef6}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:40px;height:40px;border-radius:10px}
+    .brand .title{font-weight:800;font-size:20px;line-height:1}
+    nav{display:flex;align-items:center;gap:22px}
+    nav a{font-weight:500;color:var(--ink-soft)}
+    nav a:hover{color:var(--ink)}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
+    .cta.secondary{background:var(--brand)}
+    .menu-btn{display:none;background:#eef3ff;border:0;padding:10px 12px;border-radius:12px}
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg,#e9f2ff 0%, #f7fbff 100%);}
+    .hero-inner{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:28px;padding:42px 0}
+    .hero h1{font-size:42px;line-height:1.15;margin:0 0 14px}
+    .hero p{margin:0 0 22px;color:#3d5a91;font-size:18px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-card{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:18px}
+    .quick-form{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-size:12px;color:#5b739f}
+    .input{height:44px;padding:10px 12px;border:1px solid #dfe7f5;border-radius:12px;font:inherit}
+    .submit{height:44px;border:0;background:var(--brand);color:#fff;padding:0 18px;border-radius:12px;font-weight:700}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-title{font-size:28px;margin:0 0 22px}
+
+    /* Popular visas */
+    .grid{display:grid;gap:16px}
+    .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+    .card{background:var(--card);border:1px solid #e9eef6;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;transition:transform .2s ease}
+    .card:hover{transform:translateY(-2px)}
+    .flag{width:48px;height:34px;border-radius:8px;overflow:hidden;background:#eef3ff;display:flex;align-items:center;justify-content:center;font-size:22px}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .card p{margin:0;color:#5b739f;font-size:14px}
+
+    /* Benefits */
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .benefit{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #e9eef6;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+    .benefit .ic{width:36px;height:36px;border-radius:10px;background:#eef3ff;display:grid;place-items:center;font-size:18px}
+    .benefit b{display:block;margin-bottom:6px}
+
+    /* Contacts */
+    .contacts{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+    .contact-card{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:20px;border:1px solid #e9eef6}
+    .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form textarea{min-height:110px}
+
+    /* Footer */
+    .footer{background:#0f2349;color:#cfe0ff}
+    .footer .columns{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:22px}
+    .footer a{color:#e6efff}
+    .credits{border-top:1px solid rgba(255,255,255,.12);margin-top:18px;padding:12px 0;color:#aecdff;font-size:13px}
+
+    /* Responsive */
+    @media (max-width: 1000px){
+      .hero-inner{grid-template-columns:1fr}
+      .quick-form{grid-template-columns:1fr 1fr;}
+      .grid.cols-4{grid-template-columns:repeat(2,1fr)}
+      .benefits{grid-template-columns:1fr 1fr}
+      .contacts{grid-template-columns:1fr}
+      .footer .columns{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .menu-btn{display:inline-flex}
+      nav{display:none}
+      .hero h1{font-size:32px}
+      .quick-form{grid-template-columns:1fr}
+      .grid.cols-4{grid-template-columns:1fr}
+      .benefits{grid-template-columns:1fr}
+      .footer .columns{grid-template-columns:1fr}
+      .brand img{width:34px;height:34px}
+      .brand .title{font-size:18px}
+    }
+    /* Mobile menu (opened) */
+    .mobile-nav{display:none;border-top:1px solid #e9eef6}
+    .mobile-nav a{display:block;padding:12px 0;color:var(--ink-soft)}
+    .mobile-nav.open{display:block}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="#" class="brand" aria-label="Visa Trip — на главную">
+        <!-- Замените src на ваш логотип (PNG/SVG). Временно стоит заглушка. -->
+        <img src="https://placehold.co/80x80/png?text=VT" alt="Логотип Visa Trip" />
+        <span class="title">Visa Trip</span>
+      </a>
+      <nav aria-label="Основное меню">
+        <a href="#visas">Визы</a>
+        <a href="#tours">Туры</a>
+        <a href="#benefits">Преимущества</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="cta" href="#contacts">Подать заявку</a>
+        <button class="menu-btn" aria-label="Открыть меню" id="menuBtn">☰</button>
+      </div>
+    </div>
+    <div class="container mobile-nav" id="mobileNav" aria-label="Мобильное меню">
+      <a href="#visas">Визы</a>
+      <a href="#tours">Туры</a>
+      <a href="#benefits">Преимущества</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1>Путешествуйте легко — мы оформим визу</h1>
+        <p>Соберём пакет документов, запишем на подачу и сопроводим до получения визы. Популярные направления: США, Шенген, Великобритания, Азия.</p>
+        <div class="hero-actions">
+          <a class="cta" href="#contacts">Подать заявку</a>
+          <a class="cta secondary" href="https://wa.me/0000000000" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Быстрая заявка">
+        <form class="quick-form" id="quickForm">
+          <div class="field">
+            <label for="country">Страна</label>
+            <input class="input" id="country" name="country" placeholder="Напр.: США / Шенген" required />
+          </div>
+          <div class="field">
+            <label for="city">Город подачи</label>
+            <input class="input" id="city" name="city" placeholder="Город" required />
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input class="input" id="phone" name="phone" placeholder="+7 ___ ___-__-__" required />
+          </div>
+          <button class="submit" type="submit">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular visas -->
+  <section id="visas">
+    <div class="container">
+      <h2 class="section-title">Популярные визы</h2>
+      <div class="grid cols-4">
+        <article class="card">
+          <div class="flag" aria-hidden="true">🇺🇸</div>
+          <h3>США (B1/B2)</h3>
+          <p>Подготовка DS-160, запись на интервью, тренировка вопросов.</p>
+        </article>
+        <article class="card">
+          <div class="flag">🇪🇺</div>
+          <h3>Шенген</h3>
+          <p>Подбор консульства, маршрут, бронь отелей и билетов.</p>
+        </article>
+        <article class="card">
+          <div class="flag">🇬🇧</div>
+          <h3>Великобритания</h3>
+          <p>Анкета, финдокументы, запись на биометрию, сопровождение.</p>
+        </article>
+        <article class="card">
+          <div class="flag">🇯🇵</div>
+          <h3>Азия</h3>
+          <p>Япония, Корея, ОАЭ, Сингапур — полный пакет документов.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tours (teaser) -->
+  <section id="tours" style="background:var(--muted)">
+    <div class="container">
+      <h2 class="section-title">Туры с визовой поддержкой</h2>
+      <div class="grid cols-4">
+        <article class="card"><h3>Европа</h3><p>Города и замки: Прага, Вена, Бавария.</p></article>
+        <article class="card"><h3>США</h3><p>Нью‑Йорк + национальные парки.</p></article>
+        <article class="card"><h3>Азия</h3><p>Токио, Киото, Сеул, Сингапур.</p></article>
+        <article class="card"><h3>ОАЭ</h3><p>Дубай — шопинг и отдых на море.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <div class="container">
+      <h2 class="section-title">Почему с нами удобно</h2>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">✅</div><div><b>Честные сроки и цены</b>Фиксируем в договоре и не меняем по ходу процесса.</div></div>
+        <div class="benefit"><div class="ic">📄</div><div><b>Полный пакет документов</b>Собираем, проверяем и подаём за вас.</div></div>
+        <div class="benefit"><div class="ic">🧑‍💼</div><div><b>Личный менеджер</b>На связи в WhatsApp/Telegram с 9:00 до 21:00.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts -->
+  <section id="contacts" style="background:linear-gradient(180deg,#fff,#f9fbff)">
+    <div class="container contacts">
+      <div class="contact-card">
+        <h2 style="margin-top:0">Контакты</h2>
+        <p><b>Телефон:</b> <a href="tel:+70000000000">+7 (000) 000‑00‑00</a></p>
+        <p><b>WhatsApp:</b> <a href="https://wa.me/0000000000" target="_blank" rel="noopener">написать</a></p>
+        <p><b>Telegram:</b> <a href="https://t.me/your_username" target="_blank" rel="noopener">@your_username</a></p>
+        <p><b>Email:</b> <a href="mailto:hello@visatrip.ru">hello@visatrip.ru</a></p>
+        <p><b>Адрес:</b> Москва, ул. Пример, 1</p>
+        <iframe title="Карта офиса" style="width:100%;height:220px;border:0;border-radius:14px" src="https://maps.google.com/maps?q=moscow&t=&z=12&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+      <div class="contact-card form">
+        <h2 style="margin-top:0">Оставить заявку</h2>
+        <form id="contactForm" novalidate>
+          <div class="row">
+            <div class="field"><label for="name">Имя</label><input class="input" id="name" required placeholder="Ваше имя"></div>
+            <div class="field"><label for="phone2">Телефон</label><input class="input" id="phone2" required placeholder="+7 ___ ___‑__‑__"></div>
+          </div>
+          <div class="field" style="margin-top:12px"><label for="email">Email</label><input class="input" id="email" type="email" placeholder="mail@example.com"></div>
+          <div class="field" style="margin-top:12px"><label for="msg">Комментарий</label><textarea class="input" id="msg" placeholder="Куда и когда хотите поехать"></textarea></div>
+          <button class="submit" style="margin-top:12px" type="submit">Отправить</button>
+          <p id="formNote" style="margin:8px 0 0;color:#5b739f;font-size:13px">Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container" style="padding:24px 0">
+      <div class="columns">
+        <div>
+          <div class="brand" style="margin-bottom:10px"><img src="https://placehold.co/80x80/png?text=VT" alt="Логотип"/><span class="title" style="color:#fff">Visa Trip</span></div>
+          <p style="margin:0;color:#cfe0ff">Оформление виз и туры с визовой поддержкой. Работаем по договору, сопровождаем до получения визы.</p>
+        </div>
+        <div>
+          <b>Услуги</b>
+          <ul style="list-style:none;padding:0;margin:10px 0 0;line-height:1.9">
+            <li><a href="#visas">Визы</a></li>
+            <li><a href="#tours">Туры</a></li>
+            <li><a href="#benefits">Консультации</a></li>
+          </ul>
+        </div>
+        <div>
+          <b>Контакты</b>
+          <ul style="list-style:none;padding:0;margin:10px 0 0;line-height:1.9">
+            <li><a href="tel:+70000000000">+7 (000) 000‑00‑00</a></li>
+            <li><a href="mailto:hello@visatrip.ru">hello@visatrip.ru</a></li>
+            <li><a href="https://t.me/your_username" target="_blank">Telegram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="credits">© <span id="year"></span> Visa Trip. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Текущий год в футере
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Мобильное меню
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn && menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
+
+    // Примитивная обработка форм (демо)
+    const quickForm = document.getElementById('quickForm');
+    quickForm && quickForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+      e.target.reset();
+    });
+
+    const contactForm = document.getElementById('contactForm');
+    contactForm && contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const note = document.getElementById('formNote');
+      note.textContent = 'Спасибо! Мы получили вашу заявку и свяжемся в течение 15 минут.';
+    });
+  </script>
+</body>
+</html>
+
