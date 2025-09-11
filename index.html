@@ -1,4 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visa Trip — визовая поддержка и туры</title>
+  <meta name="description" content="Оформление виз: США, Шенген, Великобритания, Азия. Консультации, помощь с документами, туры с визовой поддержкой." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#0f2b5b; --ink-soft:#324f86;
+      --brand:#1f6fff; --accent:#ff9b21; --muted:#f5f7fb;
+      --card:#ffffff; --shadow:0 6px 30px rgba(15,43,91,.08);
+      --radius:18px; --radius-lg:26px; --container:1160px;
+    }
+
+    /* base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin-inline:auto;padding:0 16px}
+
+    /* header */
+    .header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e9eef6}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{width:40px;height:40px;border-radius:10px}
+    .brand .title{font-weight:800;font-size:20px;line-height:1}
+    nav{display:flex;align-items:center;gap:22px}
+    nav a{font-weight:500;color:var(--ink-soft)}
+    nav a:hover{color:var(--ink)}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
+    .cta.secondary{background:var(--brand)}
+    .menu-btn{display:none;background:#eef3ff;border:0;padding:10px 12px;border-radius:12px;font-size:18px}
+
+    /* hero */
+    .hero{background:linear-gradient(180deg,#e9f2ff 0%,#f7fbff 100%)}
+    .hero-inner{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:28px;padding:42px 0}
+    .hero h1{font-size:42px;line-height:1.15;margin:0 0 14px}
+    .hero p{margin:0 0 20px;color:#3d5a91;font-size:18px}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
     .hero-card{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:18px}
     .quick-form{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px}
@@ -68,7 +112,7 @@
   <header class="header" role="banner">
     <div class="container header-inner">
       <a href="#" class="brand" aria-label="Visa Trip — на главную">
-        <!-- Сохрани картинку логотипа как logo.png в корень репозитория -->
+        <!-- положи logo.png в корень репозитория -->
         <img src="logo.png" alt="Логотип Visa Trip" width="40" height="40">
         <span class="title">Visa Trip</span>
       </a>
@@ -103,19 +147,27 @@
         </div>
       </div>
 
+      <!-- Быстрая заявка (отправка на email через FormSubmit) -->
       <div class="hero-card" aria-label="Быстрая заявка">
-        <form class="quick-form" id="quickForm">
+        <form class="quick-form" action="https://formsubmit.co/vokrug2007@rambler.ru" method="POST">
+          <!-- FormSubmit настройки -->
+          <input type="hidden" name="_subject"  value="Новая быстрая заявка с Visa Trip">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha"  value="false">
+          <input type="hidden" name="_next"     value="https://kazak21.github.io/visa-trip/?sent=1">
+          <input type="text"   name="_honey"    style="display:none">
+
           <div class="field">
             <label for="country">Страна</label>
-            <input class="input" id="country" name="country" placeholder="Напр.: США / Шенген" required />
+            <input class="input" id="country" name="Страна" placeholder="Напр.: США / Шенген" required />
           </div>
           <div class="field">
             <label for="city">Город подачи</label>
-            <input class="input" id="city" name="city" placeholder="Город" required />
+            <input class="input" id="city" name="Город подачи" placeholder="Город" required />
           </div>
           <div class="field">
             <label for="phone">Телефон</label>
-            <input class="input" id="phone" name="phone" placeholder="+7 ___ ___-__-__" required />
+            <input class="input" id="phone" name="Телефон" placeholder="+7 ___ ___-__-__" required />
           </div>
           <button class="submit" type="submit">Отправить</button>
         </form>
@@ -169,20 +221,11 @@
   <section id="benefits">
     <div class="container">
       <h2 class="section-title">Почему с нами удобно</h2>
-    <div class="benefits">
-      <div class="benefit">
-        <div class="ic">✅</div>
-        <div><b>Честные сроки и цены</b>Фиксируем в договоре и не меняем по ходу процесса.</div>
+      <div class="benefits">
+        <div class="benefit"><div class="ic">✅</div><div><b>Честные сроки и цены</b>Фиксируем в договоре и не меняем по ходу процесса.</div></div>
+        <div class="benefit"><div class="ic">📄</div><div><b>Полный пакет документов</b>Собираем, проверяем и подаём за вас.</div></div>
+        <div class="benefit"><div class="ic">🧑‍💼</div><div><b>Личный менеджер</b>На связи в WhatsApp/Telegram с 9:00 до 21:00.</div></div>
       </div>
-      <div class="benefit">
-        <div class="ic">📄</div>
-        <div><b>Полный пакет документов</b>Собираем, проверяем и подаём за вас.</div>
-      </div>
-      <div class="benefit">
-        <div class="ic">🧑‍💼</div>
-        <div><b>Личный менеджер</b>На связи в WhatsApp/Telegram с 9:00 до 21:00.</div>
-      </div>
-    </div>
     </div>
   </section>
 
@@ -206,15 +249,36 @@
 
       <div class="contact-card form">
         <h2 style="margin-top:0">Оставить заявку</h2>
-        <form id="contactForm" novalidate>
-          <div class="row">
-            <div class="field"><label for="name">Имя</label><input class="input" id="name" required placeholder="Ваше имя"></div>
-            <div class="field"><label for="phone2">Телефон</label><input class="input" id="phone2" required placeholder="+7 ___ ___-__-__"></div>
+        <!-- Основная форма (отправка на email через FormSubmit) -->
+        <form id="contactForm" action="https://formsubmit.co/vokrug2007@rambler.ru" method="POST" novalidate>
+          <!-- FormSubmit настройки -->
+          <input type="hidden" name="_subject"  value="Новая заявка с Visa Trip (контакты)">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha"  value="false">
+          <input type="hidden" name="_next"     value="https://kazak21.github.io/visa-trip/?sent=1">
+          <input type="text"   name="_honey"    style="display:none">
+
+          <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field"><label for="name">Имя</label>
+              <input class="input" id="name" name="Имя" required placeholder="Ваше имя">
+            </div>
+            <div class="field"><label for="phone2">Телефон</label>
+              <input class="input" id="phone2" name="Телефон" required placeholder="+7 ___ ___-__-__">
+            </div>
           </div>
-          <div class="field" style="margin-top:12px"><label for="email">Email</label><input class="input" id="email" type="email" placeholder="mail@example.com"></div>
-          <div class="field" style="margin-top:12px"><label for="msg">Комментарий</label><textarea class="input" id="msg" placeholder="Куда и когда хотите поехать"></textarea></div>
+
+          <div class="field" style="margin-top:12px"><label for="email">Email</label>
+            <input class="input" id="email" name="Email" type="email" placeholder="mail@example.com">
+          </div>
+
+          <div class="field" style="margin-top:12px"><label for="msg">Комментарий</label>
+            <textarea class="input" id="msg" name="Комментарий" placeholder="Куда и когда хотите поехать"></textarea>
+          </div>
+
           <button class="submit" style="margin-top:12px" type="submit">Отправить</button>
-          <p id="formNote" style="margin:8px 0 0;color:#5b739f;font-size:13px">Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных.</p>
+          <p id="formNote" style="margin:8px 0 0;color:#5b739f;font-size:13px">
+            Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных.
+          </p>
         </form>
       </div>
     </div>
@@ -254,27 +318,20 @@
   </footer>
 
   <script>
-    // Текущий год
+    // год в футере
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Мобильное меню
+    // мобильное меню
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
     menuBtn && menuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
 
-    // Демо-обработка форм (без сервера)
-    const quickForm = document.getElementById('quickForm');
-    quickForm && quickForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-      e.target.reset();
-    });
-    const contactForm = document.getElementById('contactForm');
-    contactForm && contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const note = document.getElementById('formNote');
-      note.textContent = 'Спасибо! Мы получили вашу заявку и свяжемся в течение 15 минут.';
-    });
+    // если ?sent=1 в адресе — показать "спасибо" после отправки
+    const sent = new URLSearchParams(location.search).get('sent');
+    if (sent === '1') {
+      setTimeout(()=>alert('Спасибо! Заявка отправлена. Мы свяжемся с вами в ближайшее время.'), 100);
+      if (history.replaceState) history.replaceState(null, '', location.pathname);
+    }
   </script>
 </body>
 </html>
